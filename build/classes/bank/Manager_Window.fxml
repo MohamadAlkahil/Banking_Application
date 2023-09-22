@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="scenePane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #42e375;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bank.Manager_WindowController">
+   <children>
+      <Text fill="WHITE" layoutX="57.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Customer">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="332.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete Customer">
+         <font>
+            <Font name="System Bold" size="28.0" />
+         </font>
+      </Text>
+      <TextField fx:id="UserNameAdd" layoutX="40.0" layoutY="103.0" promptText="UserName" />
+      <TextField fx:id="Password" layoutX="40.0" layoutY="181.0" promptText="Password" />
+      <Button layoutX="113.0" layoutY="241.0" mnemonicParsing="false" onAction="#AddPushed" text="Add" />
+      <Button layoutX="260.0" layoutY="327.0" mnemonicParsing="false" onAction="#LogoutPushed" text="Logout" />
+      <Button layoutX="403.0" layoutY="192.0" mnemonicParsing="false" onAction="#DeletePushed" text="Delete" />
+      <TextField fx:id="UserNameDelete" layoutX="330.0" layoutY="103.0" promptText="UserName" />
+   </children>
+</AnchorPane>
