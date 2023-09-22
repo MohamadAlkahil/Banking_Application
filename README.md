@@ -41,7 +41,7 @@ This Java-based project is a bank management system. It consists of several clas
 - Subclasses of the Levels class, each representing a specific account level with its associated fee.
 
 ### SHA256 Class
-- A utility class for performing SHA-256 hashing, likely used for securely storing and comparing passwords.
+- A utility class for performing SHA-256 hashing.
 
 ### Bank Class
 - The entry point of the application.
