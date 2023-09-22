@@ -12,7 +12,7 @@ This Java-based project is a bank management system. It consists of several clas
 - The project utilizes JavaFX for a user-friendly graphical interface.
 
 ## Video Demo
-https://www.youtube.com/watch?v=vbQ2bYHxxEA
+<iframe src="https://www.youtube.com/embed/enMumwvLAug" frameborder="0" allowfullscreen="true"> </iframe>
 
 ## Class Descriptions
 
