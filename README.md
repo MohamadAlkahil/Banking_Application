@@ -1,12 +1,12 @@
 # Bank Management Application 
 ## Overview
-This Java-based project is a bank management system. It consists of several classes representing various aspects of the banking system, including actors (customers and managers), account levels, and user interface components. The project primarily focuses on user authentication, customer management, and basic banking operations. The project integrates with an SQLite database to store customer and manager information. It retrieves and updates data from this database as needed for authentication and customer management. SHA256 is used for password hashing to ensure security. 
+This Java-based project is a bank management system. It consists of several classes representing various aspects of the banking system, including actors (customers and managers), account levels, and user interface components. The project primarily focuses on user authentication, customer management, and basic banking operations. The project integrates with an SQLite database to store customer and manager information. It retrieves and updates data from this database as needed for authentication and customer management. SHA256 is used for password hashing to ensure security. The transaction fee for each user is determined based on their account level and is implemented using the state design pattern.
 
 ## Project Functionality
 
 - Users can log in as either customers or managers.
 - Customers can view their account balance and account level (Silver, Gold, Platinum).
-- Customers can withdraw and deposit funds, with their account level determining transaction fees.
+- Customers can withdraw and deposit funds, with their account level determining transaction fees(state design pattern).
 - Managers can add and remove customers from the system.
 - User authentication is performed securely using SHA-256 password hashing.
 - The project utilizes JavaFX for a user-friendly graphical interface.
