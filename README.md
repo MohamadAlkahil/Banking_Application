@@ -14,51 +14,137 @@ This Java-based project is a bank management system. It consists of several clas
 ## Video Demo
 https://www.youtube.com/watch?v=S8i-CzOfWQo
 
-## Class Descriptions
 
-### Actor Class
-- This class serves as the base class for all actors in the system, such as customers and managers.
-- It encapsulates properties for username, password, and role.
-- The constructor initializes these properties.
-- Methods for setting and getting these properties are provided.
-- It includes a `LoginCheck` method for user authentication, which is overridden by subclasses.
+## System Architecture
 
-### Customer Class
-- Extends the Actor class and represents bank customers.
-- Contains properties for the customer's account level and fee.
-- The `changeLevels` method updates the customer's account level based on their balance.
-- Methods for retrieving the fee and account level are provided.
-- Additional methods are available for managing the customer's balance.
+The application follows a layered architecture with the following components:
 
-### Manager Class
-- Also extends the Actor class and represents bank managers.
-- Provides methods for authenticating as a manager, adding customers, and removing customers from the database.
+1. Presentation Layer: JavaFX-based user interfaces
+2. Business Logic Layer: Core banking operations and user management
+3. Data Access Layer: SQLite database integration
+4. Security Layer: Password hashing using SHA-256
 
-### Levels Class
-- An abstract class representing different account levels (Silver, Gold, Platinum).
-- Defines abstract methods for calculating fees and retrieving the level name.
+## Class Diagram
 
-### Gold, Platinum, and Silver Classes
-- Subclasses of the Levels class, each representing a specific account level with its associated fee.
+```mermaid
+classDiagram
+    Actor <|-- Customer
+    Actor <|-- Manager
+    Levels <|-- Silver
+    Levels <|-- Gold
+    Levels <|-- Platinum
+    Customer "1" -- "1" Levels
+    
+    class Actor {
+        -String username
+        -String password
+        -String role
+        +setUsername(String)
+        +getUsername() String
+        +setPassword(String)
+        +getPassword() String
+        +setRole(String)
+        +getRole() String
+        +LoginCheck() boolean
+    }
+    
+    class Customer {
+        -Levels level
+        +getfee() double
+        +getlevel() String
+        +changeLevels()
+        +getbalance() double
+        +UpdateBalance(double)
+    }
+    
+    class Manager {
+        +RemoveCustomer(String)
+        +AddCustomer(String, String)
+    }
+    
+    class Levels {
+        <<abstract>>
+        +fee() double
+        +lev() String
+    }
+    
+    class Silver {
+        -double fee
+        -String lev
+    }
+    
+    class Gold {
+        -double fee
+        -String lev
+    }
+    
+    class Platinum {
+        -double fee
+        -String lev
+    }
+    
+    class SHA256 {
+        +getSHA(String) byte[]
+        +toHexString(byte[]) String
+    }
+    
+    class Bank {
+        +start(Stage)
+        +logout(Stage)
+        +main(String[])
+    }
+```
 
-### SHA256 Class
-- A utility class for performing SHA-256 hashing.
+## Key Components
 
-### Bank Class
-- The entry point of the application.
-- Utilizes JavaFX for creating a graphical user interface (GUI).
-- Handles user logouts.
+### 1 Actor Class
+- Base class for all users (customers and managers)
+- Contains common attributes: username, password, role
+- Provides basic authentication method (LoginCheck)
 
-## Controller Classes
+### 2 Customer Class
+- Extends Actor class
+- Manages customer-specific operations: balance checking, withdrawals, deposits
+- Implements account level management (Silver, Gold, Platinum)
 
-#### LoginController Class
-- Acts as the controller for the login functionality.
-- Handles user authentication and navigation to manager or customer windows after login.
-- Utilizes SHA-256 hashing for password security.
+### 3 Manager Class
+- Extends Actor class
+- Handles manager-specific operations: adding and removing customers
 
-#### Manager_WindowController Class
-- Manages the manager's window, allowing managers to add and remove customers from the system and log out.
+### 4.4 Levels Classes (Silver, Gold, Platinum)
+- Implement the State pattern for managing different account levels
+- Each level has its own fee structure
 
-#### Customer_WindowController Class
-- Controls the customer's window, displaying customer-specific information like balance and account level.
-- Allows customers to perform banking operations such as withdrawals and deposits and provides a logout option.
+### 5 SHA256 Class
+- Utility class for password hashing
+- Implements SHA-256 algorithm for secure password storage
+
+### 6 Bank Class
+- Entry point of the application
+- Manages the main application window and logout functionality
+
+### 7 Controller Classes
+- LoginController: Manages user authentication
+- Customer_WindowController: Handles customer interface and operations
+- Manager_WindowController: Manages manager interface and operations
+
+## Database Schema
+
+The application uses an SQLite database with two main tables:
+
+1. CUSTR (Customers):
+   - CId (Customer ID)
+   - CPass (Hashed Password)
+   - Balance
+   - Role
+
+2. MANGR (Managers):
+   - MId (Manager ID)
+   - MPass (Password)
+
+## Key Design Patterns
+
+### State Pattern
+The application uses the State pattern to manage different account levels (Silver, Gold, Platinum). This allows for easy modification of account behavior based on the customer's balance.
+
+
